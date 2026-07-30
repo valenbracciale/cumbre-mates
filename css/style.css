@@ -1,0 +1,802 @@
+/* =========================================================
+   Cumbre Mates & Co. — Home stylesheet
+   ========================================================= */
+
+/* ---- Fonts ------------------------------------------------
+   Trimmed @font-face set: only the weights actually used
+   (Satoshi 400/500/700, New Title 500/700). One family name
+   per typeface so font-weight switches naturally. */
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2') format('woff2'),
+       url('../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff2') format('woff2'),
+       url('../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Satoshi';
+  src: url('../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff2') format('woff2'),
+       url('../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'New Title';
+  src: url('../assets/fonts/NewTitle_Complete/Fonts/WEB/fonts/NewTitle-Medium.woff2') format('woff2'),
+       url('../assets/fonts/NewTitle_Complete/Fonts/WEB/fonts/NewTitle-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'New Title';
+  src: url('../assets/fonts/NewTitle_Complete/Fonts/WEB/fonts/NewTitle-Bold.woff2') format('woff2'),
+       url('../assets/fonts/NewTitle_Complete/Fonts/WEB/fonts/NewTitle-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gambarino';
+  src: url('../assets/fonts/Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.woff2') format('woff2'),
+       url('../assets/fonts/Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.woff') format('woff'),
+       url('../assets/fonts/Gambarino_Complete/Fonts/WEB/fonts/Gambarino-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Montserrat/woff2/Montserrat-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../assets/fonts/Montserrat/woff2/Montserrat-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---- Design tokens ---------------------------------------- */
+
+:root {
+  --color-primary: #A1A468;
+  --color-secondary: #143D35;
+  --color-accent: #BE9B5F;
+  --color-bg: #F5F0E6;
+  --color-text: #2D2926;
+  --color-muted: #5E7775;
+
+  --font-body: 'Satoshi', system-ui, -apple-system, sans-serif;
+  --font-display: 'Montserrat', Arial, sans-serif;
+
+  --radius-card: 18px;
+  --gap-card: 24px;
+  --transition-fast: 200ms ease;
+
+  --container-max: 1400px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-fast: 0ms;
+  }
+}
+
+/* ---- Reset -------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  font-weight: 700;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ---- Buttons -------------------------------------------------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: 2px solid transparent;
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn--cta,
+.btn--whatsapp {
+  background: var(--color-accent);
+  color: var(--color-secondary);
+}
+
+.btn--cta:hover,
+.btn--whatsapp:hover {
+  background: #a9885a;
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: var(--color-secondary);
+  color: var(--color-secondary);
+}
+
+.btn--outline:hover {
+  background: var(--color-secondary);
+  color: var(--color-bg);
+}
+
+/* ---- Header / Nav ---------------------------------------------- */
+
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 16px 32px;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.site-header.header-scrolled {
+  background: var(--color-secondary);
+  border-bottom: 1px solid rgba(94, 119, 117, 0.25);
+}
+
+.site-logo {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+
+.site-logo img {
+  height: 69px;
+  width: auto;
+}
+
+.nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.nav-toggle__bar,
+.nav-toggle::before,
+.nav-toggle::after {
+  content: '';
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--color-bg);
+  position: relative;
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.nav-toggle::before {
+  transform: translateY(-7px);
+}
+
+.nav-toggle::after {
+  transform: translateY(5px);
+}
+
+.nav-toggle[aria-expanded="true"] .nav-toggle__bar {
+  opacity: 0;
+}
+
+.nav-toggle[aria-expanded="true"]::before {
+  transform: translateY(0) rotate(45deg);
+}
+
+.nav-toggle[aria-expanded="true"]::after {
+  transform: translateY(-2px) rotate(-45deg);
+}
+
+.site-nav {
+  display: flex;
+}
+
+.site-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 8px;
+}
+
+.site-nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 14px;
+  font-weight: 500;
+  color: var(--color-bg);
+  border-radius: 8px;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.site-nav a:hover,
+.site-nav a[aria-current="page"] {
+  color: var(--color-secondary);
+  background: var(--color-bg);
+}
+
+@media (max-width: 767px) {
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .site-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-bg);
+    border-bottom: 1px solid rgba(94, 119, 117, 0.25);
+    display: none;
+  }
+
+  .site-nav.is-open {
+    display: block;
+  }
+
+  .site-nav ul {
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 24px 20px;
+  }
+
+  .site-nav a {
+    width: 100%;
+    color: var(--color-text);
+  }
+
+  .site-nav a:hover,
+  .site-nav a[aria-current="page"] {
+    color: var(--color-secondary);
+    background: rgba(161, 164, 104, 0.18);
+  }
+}
+
+/* ---- Hero -------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100svh;
+  padding-top: 93px;
+  overflow: hidden;
+  background-color: var(--color-secondary);
+}
+
+.hero__texture {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  z-index: 0;
+  width: 290%;
+  max-width: none;
+  height: auto;
+  transform: translateX(-57.1%);
+  opacity: 0.06;
+  pointer-events: none;
+}
+
+.hero__grain-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.2;
+  mix-blend-mode: soft-light;
+  filter: grayscale(1) contrast(0.55);
+  pointer-events: none;
+  background-image: url("../assets/img/texturas/black-wooden-textured-tileable.jpg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 1800px 1200px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.165;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("../assets/img/texturas/grano-cinema.png");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  padding: 24px;
+  max-width: 1200px;
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(3rem, 9vw, 5.25rem);
+  line-height: 0.98;
+  color: var(--color-bg);
+  margin: 0 0 24px;
+  text-wrap: balance;
+}
+
+.word-highlight {
+  font-family: 'Gambarino', var(--font-display);
+  font-size: 0.92em;
+}
+
+.hero__subtitle {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: var(--color-bg);
+  margin: 0 auto 40px;
+  max-width: 640px;
+  text-wrap: balance;
+}
+
+/* ---- Section divider (brand illustration) --------------------------- */
+
+.section-divider {
+  display: flex;
+  justify-content: center;
+  background: var(--color-bg);
+  padding: 40px 24px;
+}
+
+.section-divider img {
+  height: 220px;
+  width: auto;
+  max-width: 100%;
+}
+
+@media (max-width: 767px) {
+  .section-divider img {
+    height: 140px;
+  }
+}
+
+/* ---- Value strip --------------------------------------------------- */
+
+.value-strip {
+  background: var(--color-bg);
+  overflow: hidden;
+  padding: 40px 0;
+  mask-image: linear-gradient(to right, transparent, black 100px, black calc(100% - 100px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 100px, black calc(100% - 100px), transparent);
+}
+
+.value-strip__track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: value-strip-scroll 36s linear infinite;
+}
+
+.value-strip__list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0 16px 0 0;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.value-strip__list li {
+  font-weight: 500;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+.value-strip__sep {
+  opacity: 0.5;
+}
+
+@keyframes value-strip-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ---- Featured products (bento grid) ---------------------------------- */
+
+.featured-products {
+  padding: 80px 24px;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.featured-products__heading {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.featured-products__heading h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: var(--color-secondary);
+}
+
+.featured-products__note {
+  margin-top: 12px;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--gap-card);
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  border-radius: var(--radius-card);
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(45, 41, 38, 0.08);
+}
+
+.product-card__media {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: calc(var(--radius-card) - 6px);
+  background: var(--color-bg);
+}
+
+.product-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-fast);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .product-card:hover .product-card__media img {
+    transform: scale(1.02);
+  }
+}
+
+.product-card__badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--color-accent);
+  color: var(--color-secondary);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.product-card__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--color-text);
+}
+
+.product-card__price {
+  color: var(--color-accent);
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.product-card .btn {
+  width: 100%;
+  margin-top: 4px;
+}
+
+.featured-products__cta {
+  text-align: center;
+  margin-top: 48px;
+}
+
+/* ---- Engraving promo -------------------------------------------------- */
+
+.engraving-promo {
+  display: grid;
+  grid-template-columns: 1fr;
+  background: var(--color-secondary);
+}
+
+.engraving-promo__media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.engraving-promo__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.engraving-promo__content {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 28px 32px;
+  color: var(--color-bg);
+}
+
+.engraving-promo__illustration {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+.engraving-promo__wood {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.2;
+  mix-blend-mode: soft-light;
+  filter: grayscale(1) contrast(0.55);
+  pointer-events: none;
+  background-image: url("../assets/img/texturas/black-wooden-textured-tileable.jpg");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 1800px 1200px;
+}
+
+.engraving-promo__content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0.107;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("../assets/img/texturas/grano-cinema.png");
+  background-repeat: repeat;
+  background-size: 200px 200px;
+}
+
+.engraving-promo__content h2 {
+  position: relative;
+  z-index: 3;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+}
+
+.engraving-promo__content p {
+  position: relative;
+  z-index: 3;
+  font-size: 1.05rem;
+  line-height: 1.35;
+  opacity: 0.92;
+  max-width: 42ch;
+}
+
+.engraving-promo__content .btn {
+  position: relative;
+  z-index: 3;
+  align-self: flex-start;
+}
+
+.engraving-promo__content .btn--outline {
+  border-color: var(--color-bg);
+  color: var(--color-bg);
+}
+
+.engraving-promo__content .btn--outline:hover {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+@media (min-width: 768px) {
+  .engraving-promo {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .engraving-promo__media {
+    aspect-ratio: auto;
+  }
+
+  .engraving-promo__media img {
+    object-fit: cover;
+  }
+}
+
+/* ---- Footer ------------------------------------------------------------ */
+
+.site-footer {
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: 56px 24px 32px;
+}
+
+.site-footer__inner {
+  max-width: var(--container-max);
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.site-footer__brand img {
+  height: 56px;
+  width: auto;
+  margin-bottom: 24px;
+}
+
+.footer-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.footer-nav a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  transition: color var(--transition-fast);
+}
+
+.footer-nav a:hover {
+  color: var(--color-accent);
+}
+
+.footer-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-contact a {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  transition: color var(--transition-fast);
+}
+
+.footer-contact a:hover {
+  color: var(--color-accent);
+}
+
+.site-footer__bottom {
+  max-width: var(--container-max);
+  margin: 40px auto 0;
+  padding-top: 24px;
+  border-top: 1px solid rgba(245, 240, 230, 0.15);
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+/* ---- Breakpoint tuning for the product grid ------------------------------ */
+
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

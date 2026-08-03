@@ -511,7 +511,7 @@ button:focus-visible {
 /* ---- Featured products (bento grid) ---------------------------------- */
 
 .featured-products {
-  padding: 80px 24px;
+  padding: 80px 24px 48px;
   max-width: var(--container-max);
   margin-inline: auto;
 }
@@ -608,6 +608,17 @@ button:focus-visible {
   margin-top: 48px;
 }
 
+.belly-divider {
+  width: 130%;
+  margin-left: -15%;
+  height: 280px;
+  background-color: #F5F0E6;
+  border-radius: 50%;
+  margin-bottom: -140px;
+  position: relative;
+  z-index: 2;
+}
+
 /* ---- Engraving promo -------------------------------------------------- */
 
 .engraving-promo {
@@ -617,8 +628,18 @@ button:focus-visible {
 }
 
 .engraving-promo__media {
+  position: relative;
   aspect-ratio: 4 / 3;
   overflow: hidden;
+}
+
+.engraving-promo__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: #000000;
+  opacity: 0.25;
+  pointer-events: none;
 }
 
 .engraving-promo__media img {
@@ -646,35 +667,8 @@ button:focus-visible {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  opacity: 0.25;
+  opacity: 0.18;
   pointer-events: none;
-}
-
-.engraving-promo__wood {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  opacity: 0.2;
-  mix-blend-mode: soft-light;
-  filter: grayscale(1) contrast(0.55);
-  pointer-events: none;
-  background-image: url("../assets/img/texturas/black-wooden-textured-tileable.jpg");
-  background-repeat: repeat;
-  background-position: center;
-  background-size: 1800px 1200px;
-}
-
-.engraving-promo__content::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  opacity: 0.107;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  background-image: url("../assets/img/texturas/grano-cinema.png");
-  background-repeat: repeat;
-  background-size: 200px 200px;
 }
 
 .engraving-promo__content h2 {
@@ -713,6 +707,8 @@ button:focus-visible {
 @media (min-width: 768px) {
   .engraving-promo {
     grid-template-columns: 1fr 1fr;
+    height: calc(100vh - 102px);
+    overflow: hidden;
   }
 
   .engraving-promo__media {
@@ -721,13 +717,14 @@ button:focus-visible {
 
   .engraving-promo__media img {
     object-fit: cover;
+    object-position: center;
   }
 }
 
 /* ---- Footer ------------------------------------------------------------ */
 
 .site-footer {
-  background: var(--color-text);
+  background: var(--color-secondary);
   color: var(--color-bg);
   padding: 56px 24px 32px;
 }

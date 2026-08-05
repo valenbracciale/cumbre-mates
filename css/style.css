@@ -84,6 +84,7 @@
   --color-primary: #A1A468;
   --color-secondary: #143D35;
   --color-accent: #BE9B5F;
+  --accent: #BE9B5F;
   --color-bg: #F5F0E6;
   --color-text: #2D2926;
   --color-muted: #5E7775;
@@ -122,8 +123,18 @@
   }
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
+html {
+  background-color: #143D35;
+}
+
 body {
   margin: 0;
+  padding: 0;
   background: var(--color-bg);
   color: var(--color-text);
   font-family: var(--font-body);
@@ -135,6 +146,10 @@ body {
 img {
   max-width: 100%;
   display: block;
+}
+
+main {
+  overflow-x: hidden;
 }
 
 h1, h2, h3 {
@@ -230,7 +245,8 @@ button:focus-visible {
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.site-header.header-scrolled {
+.site-header.header-scrolled,
+.site-header.site-header--solid {
   background: var(--color-secondary);
   border-bottom: 1px solid rgba(94, 119, 117, 0.25);
 }
@@ -416,6 +432,27 @@ button:focus-visible {
   max-width: 1200px;
 }
 
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 999px;
+  padding: 8px 20px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.hero__badge-icon {
+  flex-shrink: 0;
+}
+
 .hero__title {
   font-family: var(--font-display);
   font-weight: 900;
@@ -441,6 +478,11 @@ button:focus-visible {
   text-wrap: balance;
 }
 
+.highlight-accent {
+  font-weight: 700;
+  color: var(--accent);
+}
+
 /* ---- Section divider (brand illustration) --------------------------- */
 
 .section-divider {
@@ -459,6 +501,11 @@ button:focus-visible {
 @media (max-width: 767px) {
   .section-divider img {
     height: 140px;
+  }
+
+  .hero__badge {
+    padding: 6px 16px;
+    font-size: 12px;
   }
 }
 
@@ -590,6 +637,41 @@ button:focus-visible {
   font-weight: 800;
   font-size: 1.3rem;
   color: var(--color-text);
+}
+
+.product-card__details {
+  font-weight: 300;
+  font-size: 13px;
+  color: var(--color-muted);
+  line-height: normal;
+  text-transform: none;
+}
+
+.product-card__colors {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.product-card__colors-label {
+  font-size: 12px;
+  color: var(--color-muted);
+  font-weight: 500;
+}
+
+.product-card__swatches {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.product-card__swatch {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .product-card__price {
@@ -796,4 +878,551 @@ button:focus-visible {
   .product-grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* ---- Catalog page ---------------------------------------------------- */
+
+.catalog-intro {
+  padding: 140px 24px 32px;
+  text-align: center;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.catalog-intro__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--color-secondary);
+}
+
+.catalog-intro__subtitle {
+  margin-top: 12px;
+  color: var(--color-muted);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+}
+
+.catalog-controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 24px 40px;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.catalog-search {
+  width: 100%;
+  max-width: 480px;
+}
+
+.catalog-search__input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--color-muted);
+  background: #fff;
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+}
+
+.catalog-search__input:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.catalog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.catalog-filter-pill {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  border: 1px solid var(--color-secondary);
+  background: transparent;
+  color: var(--color-secondary);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.catalog-filter-pill:hover {
+  background: rgba(20, 61, 53, 0.08);
+}
+
+.catalog-filter-pill.is-active {
+  background: var(--color-secondary);
+  color: var(--color-bg);
+}
+
+.catalog-products {
+  padding: 0 24px 80px;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.catalog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--gap-card);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .catalog-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.catalog-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--color-muted);
+  font-size: 1rem;
+}
+
+/* ---- Combo collage (fotos reales de los componentes; ícono de línea como fallback si falta foto) ---- */
+
+.combo-collage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: var(--color-bg);
+}
+
+.combo-collage__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 140px);
+  grid-template-rows: repeat(2, 140px);
+  gap: 8px;
+}
+
+.combo-collage__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  width: 140px;
+  height: 140px;
+  color: var(--color-secondary);
+}
+
+.combo-collage__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.combo-collage__icon svg {
+  width: 48px;
+  height: 48px;
+}
+
+@media (max-width: 767px) {
+  .combo-collage__grid {
+    grid-template-columns: repeat(2, 110px);
+    grid-template-rows: repeat(2, 110px);
+    gap: 8px;
+  }
+
+  .combo-collage__icon {
+    width: 110px;
+    height: 110px;
+  }
+
+  .combo-collage__icon svg {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+/* ---- Grabados: hero -------------------------------------------------- */
+
+.grabados-hero {
+  position: relative;
+  overflow: hidden;
+  padding: 140px 24px 64px;
+  background-color: var(--color-secondary);
+  text-align: center;
+}
+
+.grabados-hero__video-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.grabados-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: rgba(20, 61, 53, 0.65);
+  pointer-events: none;
+}
+
+.grabados-hero__content {
+  position: relative;
+  z-index: 3;
+  max-width: 780px;
+  margin-inline: auto;
+}
+
+.grabados-hero__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  color: var(--color-bg);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.grabados-hero__subtitle {
+  margin-top: 20px;
+  color: var(--color-bg);
+  opacity: 0.85;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+/* ---- Grabados: galería de portfolio ------------------------------------ */
+
+.grabados-gallery {
+  padding: 16px 24px 48px;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.grabados-gallery__heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.grabados-gallery__heading h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  color: var(--color-secondary);
+}
+
+.grabados-gallery__note {
+  margin-top: 12px;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.grabados-marquee {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  mask-image: linear-gradient(to right, transparent, black 100px, black calc(100% - 100px), transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 100px, black calc(100% - 100px), transparent);
+}
+
+.grabados-marquee__row {
+  width: 100%;
+  overflow: hidden;
+}
+
+.grabados-marquee__track {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: max-content;
+  will-change: transform;
+}
+
+.grabados-marquee__set {
+  display: contents;
+}
+
+.grabados-marquee__item {
+  position: relative;
+  flex-shrink: 0;
+  width: 500px;
+  aspect-ratio: 16 / 9;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-bg);
+  margin: 0;
+}
+
+.grabados-marquee__item img,
+.grabados-marquee__item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.grabados-gallery__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 12px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-bg);
+  background: linear-gradient(to top, rgba(20, 61, 53, 0.85), rgba(20, 61, 53, 0));
+}
+
+@media (min-width: 768px) {
+  .grabados-marquee__item {
+    width: 620px;
+  }
+}
+
+/* ---- Grabados: regalos empresariales ----------------------------------- */
+
+.business-gifts {
+  background: var(--color-primary);
+  padding: 72px 24px;
+}
+
+.business-gifts__content {
+  max-width: 680px;
+  margin-inline: auto;
+  padding-top: 96px;
+  text-align: center;
+  color: var(--color-secondary);
+}
+
+.business-gifts__content h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  margin-bottom: 20px;
+}
+
+.business-gifts__content p {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-bottom: 14px;
+}
+
+.business-gifts__content .btn {
+  margin-top: 32px;
+}
+
+/* ---- Grabados: CTA final ------------------------------------------------ */
+
+.grabados-cta {
+  padding: 72px 24px;
+  text-align: center;
+  background: var(--color-secondary);
+}
+
+.grabados-cta__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  color: var(--color-bg);
+}
+
+.grabados-cta__subtitle {
+  margin-top: 12px;
+  color: var(--color-bg);
+  opacity: 0.85;
+  font-size: 1.05rem;
+}
+
+.grabados-cta .btn {
+  margin-top: 28px;
+}
+
+.grabados-cta__instagram {
+  margin-top: 20px;
+  color: var(--color-bg);
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+.grabados-cta__instagram a {
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+/* ---- Regalos empresariales: hero ---------------------------------------- */
+
+.gifts-hero {
+  padding: 140px 24px 64px;
+  background-color: var(--color-secondary);
+  text-align: center;
+}
+
+.gifts-hero__content {
+  max-width: 780px;
+  margin-inline: auto;
+}
+
+.gifts-hero__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  color: var(--color-bg);
+  line-height: 1.05;
+  text-wrap: balance;
+}
+
+.gifts-hero__subtitle {
+  margin-top: 20px;
+  color: var(--color-bg);
+  opacity: 0.85;
+  font-size: clamp(1rem, 1.5vw, 1.15rem);
+  line-height: 1.5;
+  text-wrap: balance;
+}
+
+.gifts-hero .btn {
+  margin-top: 28px;
+}
+
+.gifts-hero-proof {
+  padding: 32px 24px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--color-muted);
+}
+
+/* ---- Regalos empresariales: razones -------------------------------------- */
+
+.gifts-reasons {
+  padding: 16px 24px 64px;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.gifts-reasons__heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.gifts-reasons__heading h2 {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  color: var(--color-secondary);
+}
+
+.gifts-reasons__note {
+  margin-top: 12px;
+  color: var(--color-muted);
+  font-size: 0.95rem;
+}
+
+.gifts-reasons__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--gap-card);
+}
+
+.gifts-reason-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #fff;
+  border-radius: var(--radius-card);
+  padding: 24px 20px;
+  box-shadow: 0 1px 3px rgba(45, 41, 38, 0.08);
+}
+
+.gifts-reason-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--color-secondary);
+}
+
+.gifts-reason-card__icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.gifts-reason-card h3 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.gifts-reason-card p {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* ---- Regalos empresariales: prueba social -------------------------------- */
+
+.gifts-social-proof {
+  background: var(--color-secondary);
+  padding: 56px 24px;
+  text-align: center;
+}
+
+.gifts-social-proof p {
+  max-width: 680px;
+  margin-inline: auto;
+  color: var(--color-bg);
+  font-size: 1.05rem;
+  line-height: 1.5;
+}
+
+/* ---- Regalos empresariales: CTA final ------------------------------------ */
+
+.gifts-cta {
+  padding: 72px 24px;
+  text-align: center;
+  background: var(--color-secondary);
+}
+
+.gifts-cta__title {
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  color: var(--color-bg);
+}
+
+.gifts-cta__subtitle {
+  margin-top: 12px;
+  color: var(--color-bg);
+  opacity: 0.85;
+  font-size: 1.05rem;
+}
+
+.gifts-cta .btn {
+  margin-top: 28px;
 }

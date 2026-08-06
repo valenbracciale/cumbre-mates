@@ -83,8 +83,8 @@
 :root {
   --color-primary: #A1A468;
   --color-secondary: #143D35;
-  --color-accent: #BE9B5F;
-  --accent: #BE9B5F;
+  --color-accent: #A1A468;
+  --accent: #A1A468;
   --color-bg: #F5F0E6;
   --color-text: #2D2926;
   --color-muted: #5E7775;
@@ -123,13 +123,8 @@
   }
 }
 
-html,
-body {
-  overflow-x: hidden;
-}
-
 html {
-  background-color: #143D35;
+  background-color: #F5F0E6;
 }
 
 body {
@@ -146,10 +141,6 @@ body {
 img {
   max-width: 100%;
   display: block;
-}
-
-main {
-  overflow-x: hidden;
 }
 
 h1, h2, h3 {
@@ -234,21 +225,100 @@ button:focus-visible {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-  padding: 16px 32px;
+  z-index: 1;
   background: transparent;
   border-bottom: 1px solid transparent;
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-.site-header.header-scrolled,
 .site-header.site-header--solid {
-  background: var(--color-secondary);
-  border-bottom: 1px solid rgba(94, 119, 117, 0.25);
+  border-bottom: none;
+}
+
+/* ---- header-alt: header fijo con blur progresivo (todas las páginas menos Home) ---- */
+
+body.header-alt .site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  border-bottom: none;
+  box-shadow: none;
+  outline: none;
+}
+
+body.header-alt .site-logo img {
+  filter: brightness(0) saturate(100%);
+}
+
+body.header-alt .header-blur-layers {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body.header-alt .header-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(245, 240, 230, 1) 0%, rgba(245, 240, 230, 1) 40%, rgba(245, 240, 230, 0) 100%);
+}
+
+body.header-alt .blur-layer-2 {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 45%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 45%, black 85%, transparent 100%);
+}
+
+body.header-alt .blur-layer-3 {
+  position: absolute;
+  inset: 0;
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  mask-image: linear-gradient(to bottom, transparent 0%, transparent 25%, black 65%, black 85%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 25%, black 65%, black 85%, transparent 100%);
+}
+
+body.header-alt .site-nav a[aria-current="page"] {
+  background: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  color: var(--color-primary);
+}
+
+body.header-alt .site-nav a[aria-current="page"]::after {
+  width: 100%;
+}
+
+body.header-alt main {
+  padding-top: 101px;
+}
+
+/* ---- home: header transparente con texto/logo blancos sólidos ---- */
+
+body.home .site-logo img {
+  filter: brightness(0) invert(1);
+}
+
+@media (min-width: 768px) {
+  body.home .site-nav a {
+    color: #FFFFFF;
+  }
+}
+
+.site-header__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 16px 32px;
 }
 
 .site-logo {
@@ -328,10 +398,21 @@ button:focus-visible {
   transition: color var(--transition-fast), background-color var(--transition-fast);
 }
 
-.site-nav a:hover,
-.site-nav a[aria-current="page"] {
+.site-nav a:hover {
   color: var(--color-secondary);
-  background: var(--color-bg);
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 0 16px 2px rgba(255, 255, 255, 0.15);
+  transition: background 300ms ease, box-shadow 300ms ease;
+}
+
+.site-nav a[aria-current="page"] {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow: 0 0 16px 2px rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 @media (max-width: 767px) {
@@ -371,44 +452,151 @@ button:focus-visible {
   }
 }
 
+/* ---- Header / Nav: underline animado + auto-contraste ------------ */
+
+.site-nav a {
+  position: relative;
+  color: var(--color-text);
+  transition: color 300ms;
+}
+
+.site-nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 1px;
+  background: var(--color-primary);
+  transition: width 300ms ease;
+}
+
+.site-nav a:hover {
+  color: var(--color-primary);
+}
+
+.site-nav a:hover::after {
+  width: 100%;
+}
+
+.site-header .btn--whatsapp,
+.site-header .btn--cta {
+  background: transparent;
+  border: 1px solid white;
+  border-radius: 999px;
+  transition: all 300ms;
+}
+
+.site-header .btn--whatsapp:hover,
+.site-header .btn--cta:hover {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: black;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .site-nav a,
+  .site-nav a::after,
+  .site-header .btn--whatsapp,
+  .site-header .btn--cta {
+    transition: none !important;
+  }
+}
+
 /* ---- Hero -------------------------------------------------------- */
 
 .hero {
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 100svh;
   padding-top: 93px;
   overflow: hidden;
-  background-color: var(--color-secondary);
+  background-color: #0c0b09;
 }
 
-.hero__texture {
+.hero__spacer {
+  height: 100vh;
+}
+
+.hero__slideshow {
   position: absolute;
-  bottom: 0;
-  left: 50%;
+  inset: 0;
   z-index: 0;
-  width: 290%;
-  max-width: none;
-  height: auto;
-  transform: translateX(-57.1%);
-  opacity: 0.06;
-  pointer-events: none;
 }
 
-.hero__grain-photo {
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: hero-crossfade 32s ease-in-out infinite;
+}
+
+.hero__slide--1 {
+  background-image: url("../assets/img/hero/hero-camionero-frontal.jpg");
+  background-image: image-set(
+    url("../assets/img/hero/hero-camionero-frontal.webp") type("image/webp"),
+    url("../assets/img/hero/hero-camionero-frontal.jpg") type("image/jpeg")
+  );
+  animation-delay: 0s;
+}
+
+.hero__slide--2 {
+  background-image: url("../assets/img/hero/hero-camionero-cenital.jpg");
+  background-image: image-set(
+    url("../assets/img/hero/hero-camionero-cenital.webp") type("image/webp"),
+    url("../assets/img/hero/hero-camionero-cenital.jpg") type("image/jpeg")
+  );
+  animation-delay: -8s;
+}
+
+.hero__slide--3 {
+  background-image: url("../assets/img/hero/hero-torpedo-macro.jpg");
+  background-image: image-set(
+    url("../assets/img/hero/hero-torpedo-macro.webp") type("image/webp"),
+    url("../assets/img/hero/hero-torpedo-macro.jpg") type("image/jpeg")
+  );
+  animation-delay: -16s;
+}
+
+.hero__slide--4 {
+  background-image: url("../assets/img/hero/hero-imperial-macro.jpg");
+  background-image: image-set(
+    url("../assets/img/hero/hero-imperial-macro.webp") type("image/webp"),
+    url("../assets/img/hero/hero-imperial-macro.jpg") type("image/jpeg")
+  );
+  animation-delay: -24s;
+}
+
+@keyframes hero-crossfade {
+  0%,
+  20.3125% {
+    opacity: 1;
+  }
+  25%,
+  95.3125% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.hero__overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  opacity: 0.2;
-  mix-blend-mode: soft-light;
-  filter: grayscale(1) contrast(0.55);
   pointer-events: none;
-  background-image: url("../assets/img/texturas/black-wooden-textured-tileable.jpg");
-  background-repeat: repeat;
-  background-position: center;
-  background-size: 1800px 1200px;
+  background:
+    radial-gradient(ellipse 75% 65% at 50% 60%, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.72) 55%, rgba(0, 0, 0, 0.88) 100%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.4) 28%, rgba(0, 0, 0, 0.55) 55%, rgba(0, 0, 0, 0.82) 100%);
 }
 
 .hero::before {
@@ -486,16 +674,24 @@ button:focus-visible {
 /* ---- Section divider (brand illustration) --------------------------- */
 
 .section-divider {
+  position: relative;
+  z-index: 2;
   display: flex;
   justify-content: center;
   background: var(--color-bg);
-  padding: 40px 24px;
+  padding: 40px 24px 14px;
 }
 
 .section-divider img {
   height: 220px;
   width: auto;
   max-width: 100%;
+}
+
+.section-divider--destacados {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  padding-top: 5px;
 }
 
 @media (max-width: 767px) {
@@ -512,9 +708,22 @@ button:focus-visible {
 /* ---- Value strip --------------------------------------------------- */
 
 .value-strip {
+  position: relative;
+  z-index: 2;
   background: var(--color-bg);
+  border-radius: 60px 60px 0 0;
   overflow: hidden;
   padding: 40px 0;
+}
+
+@media (max-width: 767px) {
+  .value-strip {
+    border-radius: 30px 30px 0 0;
+  }
+}
+
+.value-strip__viewport {
+  overflow: hidden;
   mask-image: linear-gradient(to right, transparent, black 100px, black calc(100% - 100px), transparent);
   -webkit-mask-image: linear-gradient(to right, transparent, black 100px, black calc(100% - 100px), transparent);
 }
@@ -558,7 +767,13 @@ button:focus-visible {
 /* ---- Featured products (bento grid) ---------------------------------- */
 
 .featured-products {
-  padding: 80px 24px 48px;
+  position: relative;
+  z-index: 2;
+  background: var(--color-bg);
+  padding: 80px 12px 28.8px;
+}
+
+.featured-products__inner {
   max-width: var(--container-max);
   margin-inline: auto;
 }
@@ -568,15 +783,31 @@ button:focus-visible {
   margin-bottom: 48px;
 }
 
+.featured-products__eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 2px;
+}
+
+.featured-products__heading h1,
 .featured-products__heading h2 {
   font-family: var(--font-display);
   font-weight: 900;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
+  line-height: 1.1;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: var(--color-secondary);
 }
 
 .featured-products__note {
-  margin-top: 12px;
+  margin-top: 13px;
   color: var(--color-muted);
   font-size: 0.95rem;
 }
@@ -584,7 +815,7 @@ button:focus-visible {
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: var(--gap-card);
+  gap: 32px;
 }
 
 .product-card {
@@ -592,16 +823,21 @@ button:focus-visible {
   flex-direction: column;
   gap: 12px;
   background: #fff;
-  border-radius: var(--radius-card);
+  border-radius: 10px;
   padding: 16px;
   box-shadow: 0 1px 3px rgba(45, 41, 38, 0.08);
+  transition: transform 220ms ease, box-shadow 220ms ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 16px 32px rgba(45, 41, 38, 0.16);
 }
 
 .product-card__media {
   position: relative;
   aspect-ratio: 1 / 1;
   overflow: hidden;
-  border-radius: calc(var(--radius-card) - 6px);
+  border-radius: 10px;
   background: var(--color-bg);
 }
 
@@ -613,6 +849,10 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: no-preference) {
+  .product-card:hover {
+    transform: translateY(-5px);
+  }
+
   .product-card:hover .product-card__media img {
     transform: scale(1.02);
   }
@@ -682,7 +922,7 @@ button:focus-visible {
 
 .product-card .btn {
   width: 100%;
-  margin-top: 4px;
+  margin-top: 16px;
 }
 
 .featured-products__cta {
@@ -690,20 +930,72 @@ button:focus-visible {
   margin-top: 48px;
 }
 
-.belly-divider {
-  width: 130%;
-  margin-left: -15%;
-  height: 280px;
-  background-color: #F5F0E6;
-  border-radius: 50%;
-  margin-bottom: -140px;
-  position: relative;
-  z-index: 2;
+/* ---- Destacados: carrusel 3D (solo desktop, ver JS matchMedia) -------- */
+
+@media (min-width: 769px) {
+  .destacados-pin {
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    background: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+  }
+
+  .destacados-pin .featured-products__heading {
+    padding-top: 3vh;
+    margin-bottom: 12px;
+  }
+
+  .destacados-bg {
+    position: absolute;
+    inset: 0;
+    filter: blur(24px) saturate(1.05);
+    background: var(--color-primary);
+    opacity: 0;
+    transition: background-color 0.6s ease;
+    z-index: 0;
+  }
+
+  .destacados-stage {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    perspective: 1800px;
+    overflow: hidden;
+    z-index: 1;
+  }
+
+  .destacados-cards {
+    position: absolute;
+    inset: 0;
+    transform-style: preserve-3d;
+  }
+
+  .destacados-card {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300px;
+    height: 400px;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    contain: layout paint;
+    transform-origin: center center;
+    will-change: transform;
+  }
 }
 
 /* ---- Engraving promo -------------------------------------------------- */
 
 .engraving-promo {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 1fr;
   background: var(--color-secondary);
@@ -806,6 +1098,8 @@ button:focus-visible {
 /* ---- Footer ------------------------------------------------------------ */
 
 .site-footer {
+  position: relative;
+  z-index: 2;
   background: var(--color-secondary);
   color: var(--color-bg);
   padding: 56px 24px 32px;
@@ -889,17 +1183,8 @@ button:focus-visible {
   margin-inline: auto;
 }
 
-.catalog-intro__title {
-  font-family: var(--font-display);
-  font-weight: 900;
-  font-size: clamp(2.5rem, 6vw, 4rem);
-  color: var(--color-secondary);
-}
-
-.catalog-intro__subtitle {
-  margin-top: 12px;
-  color: var(--color-muted);
-  font-size: clamp(1rem, 1.5vw, 1.1rem);
+.catalog-intro .featured-products__heading {
+  margin-bottom: 0;
 }
 
 .catalog-controls {
@@ -974,7 +1259,7 @@ button:focus-visible {
 .catalog-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--gap-card);
+  gap: 32px;
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -1059,6 +1344,7 @@ button:focus-visible {
 
 .grabados-hero {
   position: relative;
+  z-index: 0;
   overflow: hidden;
   padding: 140px 24px 64px;
   background-color: var(--color-secondary);

@@ -15,36 +15,45 @@
   <meta property="og:description" content="Mates, sets materos, termos y accesorios con grabado láser personalizado en el momento. Envíos a todo el país, local en Mendoza desde 2021.">
   <meta property="og:image" content="assets/img/hero/hero-cordillera-bw.png">
 
+  <link rel="preload" as="image" href="assets/img/hero/hero-camionero-frontal.webp" type="image/webp" fetchpriority="high">
+
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="home">
 
   <header class="site-header">
-    <a href="index.html" class="site-logo">
-      <img src="assets/svg/logo/cumbre-wordmark-blanco.svg" alt="Cumbre Mates &amp; Co.">
-    </a>
+    <div class="site-header__content">
+      <a href="index.html" class="site-logo">
+        <img src="assets/svg/logo/cumbre-wordmark-olivo.svg" alt="Cumbre Mates &amp; Co.">
+      </a>
 
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
-      <span class="nav-toggle__bar"></span>
-    </button>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+        <span class="nav-toggle__bar"></span>
+      </button>
 
-    <nav class="site-nav" id="site-nav">
-      <ul>
-        <li><a href="index.html" aria-current="page">Inicio</a></li>
-        <li><a href="catalogo.html">Catálogo</a></li>
-        <li><a href="grabados.html">Grabados</a></li>
-        <li><a href="regalos-empresariales.html">Regalos Empresariales</a></li>
-        <li><a href="mayoristas.html">Mayoristas</a></li>
-        <li><a href="contacto.html">Nosotros y Contacto</a></li>
-      </ul>
-    </nav>
+      <nav class="site-nav" id="site-nav">
+        <ul>
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="grabados.html">Grabados</a></li>
+          <li><a href="regalos-empresariales.html">Regalos Empresariales</a></li>
+          <li><a href="mayoristas.html">Mayoristas</a></li>
+          <li><a href="contacto.html">Nosotros y Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <main>
 
     <section class="hero">
-      <img class="hero__texture" src="assets/svg/textura-hero.svg" alt="" aria-hidden="true">
-      <div class="hero__grain-photo" aria-hidden="true"></div>
+      <div class="hero__slideshow" aria-hidden="true">
+        <div class="hero__slide hero__slide--1"></div>
+        <div class="hero__slide hero__slide--2"></div>
+        <div class="hero__slide hero__slide--3"></div>
+        <div class="hero__slide hero__slide--4"></div>
+      </div>
+      <div class="hero__overlay" aria-hidden="true"></div>
       <div class="hero__content">
         <span class="hero__badge">
           <svg class="hero__badge-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -52,13 +61,16 @@
           </svg>
           Grabado láser incluido en tu pedido
         </span>
-        <h1 class="hero__title">Toda <span class="word-highlight">cumbre</span> se comparte.</h1>
+        <h1 class="hero__title">Todo <span class="word-highlight">mate</span> se comparte.</h1>
         <p class="hero__subtitle">Vos elegís tu equipo matero, nosotros lo personalizamos — con <span class="highlight-accent">grabado láser incluido, sin costo extra</span>. Desde Mendoza a todo el país.</p>
         <a href="catalogo.html" class="btn btn--cta">Ver Catálogo</a>
       </div>
     </section>
 
+    <div class="hero__spacer" aria-hidden="true"></div>
+
     <section class="value-strip">
+      <div class="value-strip__viewport">
       <div class="value-strip__track">
         <ul class="value-strip__list">
           <li>Grabado láser incluido en tu pedido</li>
@@ -89,87 +101,211 @@
           <li class="value-strip__sep" aria-hidden="true">•</li>
         </ul>
       </div>
+      </div>
     </section>
 
-    <div class="section-divider">
+    <div class="section-divider section-divider--destacados">
       <img src="assets/svg/illustrations/figuras-verde-bosque.svg" alt="Mate, termo y cartón de yerba caminando tomados de la mano">
     </div>
 
     <section class="featured-products">
-      <div class="featured-products__heading">
-        <h2>Destacados</h2>
-        <p class="featured-products__note">Respondemos al toque por WhatsApp — sin vueltas.</p>
-      </div>
+      <div class="featured-products__inner">
+      <div class="destacados-pin">
+        <div class="featured-products__heading">
+          <span class="featured-products__eyebrow">Catálogo</span>
+          <h2>Destacados</h2>
+          <p class="featured-products__note">Respondemos al toque por WhatsApp — sin vueltas.</p>
+        </div>
+        <div class="destacados-bg"></div>
+        <div class="destacados-stage">
+          <div class="destacados-cards product-grid">
 
-      <div class="product-grid">
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/mates/imperial-premium.png" alt="" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Imperial Premium</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
 
-        <article class="product-card">
-          <div class="product-card__media">
-            <img src="assets/img/mates/imperial-premium.png" alt="Mate Imperial Premium con base de bolitas y virola de alpaca tallada" loading="lazy" width="918" height="918">
-            <span class="product-card__badge">Apto grabado láser</span>
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/mates/imperial-deluxe.png" alt="" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Imperial Deluxe</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/mates/camionero-algarrobo.png" alt="" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Camionero Algarrobo</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/termos/termo-media-manija.png" alt="" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Termo Media Manija</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/bombillas/bombillon-alpaca-1.png" alt="" loading="lazy" width="918" height="918">
+              </div>
+              <h3 class="product-card__title">Bombillón de Alpaca</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/materas-accesorios/vaso-aluminio.png" alt="" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Vaso de Aluminio</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card">
+              <div class="product-card__media">
+                <img src="assets/img/mates/imperial-premium.png" alt="Mate Imperial Premium con base de bolitas y virola de alpaca tallada" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Imperial Premium</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" data-whatsapp-product="Imperial Premium" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card">
+              <div class="product-card__media">
+                <img src="assets/img/mates/imperial-deluxe.png" alt="Mate Imperial Deluxe con interior de acero inoxidable y virola de alpaca" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Imperial Deluxe</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" data-whatsapp-product="Imperial Deluxe" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card">
+              <div class="product-card__media">
+                <img src="assets/img/mates/camionero-algarrobo.png" alt="Mate Camionero de algarrobo barnizado con virola de acero inoxidable" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Camionero Algarrobo</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" data-whatsapp-product="Camionero Algarrobo" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card">
+              <div class="product-card__media">
+                <img src="assets/img/termos/termo-media-manija.png" alt="Termo Media Manija de acero inoxidable, disponible en negro y blanco" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Termo Media Manija</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" data-whatsapp-product="Termo Media Manija" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card">
+              <div class="product-card__media">
+                <img src="assets/img/bombillas/bombillon-alpaca-1.png" alt="Bombillón de alpaca con detalles en bronce" loading="lazy" width="918" height="918">
+              </div>
+              <h3 class="product-card__title">Bombillón de Alpaca</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" data-whatsapp-product="Bombillón de Alpaca" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card">
+              <div class="product-card__media">
+                <img src="assets/img/materas-accesorios/vaso-aluminio.png" alt="Vaso de aluminio de 1 litro en negro, blanco o personalizado" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Vaso de Aluminio</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" data-whatsapp-product="Vaso de Aluminio" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/mates/imperial-premium.png" alt="" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Imperial Premium</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/mates/imperial-deluxe.png" alt="" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Imperial Deluxe</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/mates/camionero-algarrobo.png" alt="" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Camionero Algarrobo</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/termos/termo-media-manija.png" alt="" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Termo Media Manija</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/bombillas/bombillon-alpaca-1.png" alt="" loading="lazy" width="918" height="918">
+              </div>
+              <h3 class="product-card__title">Bombillón de Alpaca</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
+            <article class="destacados-card product-card" aria-hidden="true">
+              <div class="product-card__media">
+                <img src="assets/img/materas-accesorios/vaso-aluminio.png" alt="" loading="lazy" width="918" height="918">
+                <span class="product-card__badge">Apto grabado láser</span>
+              </div>
+              <h3 class="product-card__title">Vaso de Aluminio</h3>
+              <span class="product-card__price">Consultar precio</span>
+              <a class="btn btn--whatsapp" tabindex="-1" href="#">Comprar por WhatsApp</a>
+            </article>
+
           </div>
-          <h3 class="product-card__title">Imperial Premium</h3>
-          <span class="product-card__price">Consultar precio</span>
-          <a class="btn btn--whatsapp" data-whatsapp-product="Imperial Premium" href="#">Comprar por WhatsApp</a>
-        </article>
-
-        <article class="product-card">
-          <div class="product-card__media">
-            <img src="assets/img/mates/imperial-deluxe.png" alt="Mate Imperial Deluxe con interior de acero inoxidable y virola de alpaca" loading="lazy" width="918" height="918">
-            <span class="product-card__badge">Apto grabado láser</span>
-          </div>
-          <h3 class="product-card__title">Imperial Deluxe</h3>
-          <span class="product-card__price">Consultar precio</span>
-          <a class="btn btn--whatsapp" data-whatsapp-product="Imperial Deluxe" href="#">Comprar por WhatsApp</a>
-        </article>
-
-        <article class="product-card">
-          <div class="product-card__media">
-            <img src="assets/img/mates/camionero-algarrobo.png" alt="Mate Camionero de algarrobo barnizado con virola de acero inoxidable" loading="lazy" width="918" height="918">
-            <span class="product-card__badge">Apto grabado láser</span>
-          </div>
-          <h3 class="product-card__title">Camionero Algarrobo</h3>
-          <span class="product-card__price">Consultar precio</span>
-          <a class="btn btn--whatsapp" data-whatsapp-product="Camionero Algarrobo" href="#">Comprar por WhatsApp</a>
-        </article>
-
-        <article class="product-card">
-          <div class="product-card__media">
-            <img src="assets/img/termos/termo-media-manija.png" alt="Termo Media Manija de acero inoxidable, disponible en negro y blanco" loading="lazy" width="918" height="918">
-            <span class="product-card__badge">Apto grabado láser</span>
-          </div>
-          <h3 class="product-card__title">Termo Media Manija</h3>
-          <span class="product-card__price">Consultar precio</span>
-          <a class="btn btn--whatsapp" data-whatsapp-product="Termo Media Manija" href="#">Comprar por WhatsApp</a>
-        </article>
-
-        <article class="product-card">
-          <div class="product-card__media">
-            <img src="assets/img/bombillas/bombillon-alpaca-1.png" alt="Bombillón de alpaca con detalles en bronce" loading="lazy" width="918" height="918">
-          </div>
-          <h3 class="product-card__title">Bombillón de Alpaca</h3>
-          <span class="product-card__price">Consultar precio</span>
-          <a class="btn btn--whatsapp" data-whatsapp-product="Bombillón de Alpaca" href="#">Comprar por WhatsApp</a>
-        </article>
-
-        <article class="product-card">
-          <div class="product-card__media">
-            <img src="assets/img/materas-accesorios/vaso-aluminio.png" alt="Vaso de aluminio de 1 litro en negro, blanco o personalizado" loading="lazy" width="918" height="918">
-            <span class="product-card__badge">Apto grabado láser</span>
-          </div>
-          <h3 class="product-card__title">Vaso de Aluminio</h3>
-          <span class="product-card__price">Consultar precio</span>
-          <a class="btn btn--whatsapp" data-whatsapp-product="Vaso de Aluminio" href="#">Comprar por WhatsApp</a>
-        </article>
-
+        </div>
       </div>
 
       <div class="featured-products__cta">
         <a href="catalogo.html" class="btn btn--outline">Ver todo el catálogo</a>
       </div>
+      </div>
     </section>
-
-    <div class="belly-divider"></div>
 
     <section class="engraving-promo">
       <div class="engraving-promo__media">
@@ -215,6 +351,9 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

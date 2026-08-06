@@ -17,27 +17,35 @@
 
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="header-alt">
 
   <header class="site-header">
-    <a href="index.html" class="site-logo">
-      <img src="assets/svg/logo/cumbre-wordmark-blanco.svg" alt="Cumbre Mates &amp; Co.">
-    </a>
+    <div class="header-blur-layers">
+      <div class="header-tint"></div>
+      <div class="blur-layer-2"></div>
+      <div class="blur-layer-3"></div>
+    </div>
 
-    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
-      <span class="nav-toggle__bar"></span>
-    </button>
+    <div class="site-header__content">
+      <a href="index.html" class="site-logo">
+        <img src="assets/svg/logo/cumbre-wordmark-olivo.svg" alt="Cumbre Mates &amp; Co.">
+      </a>
 
-    <nav class="site-nav" id="site-nav">
-      <ul>
-        <li><a href="index.html">Inicio</a></li>
-        <li><a href="catalogo.html">Catálogo</a></li>
-        <li><a href="grabados.html" aria-current="page">Grabados</a></li>
-        <li><a href="regalos-empresariales.html">Regalos Empresariales</a></li>
-        <li><a href="mayoristas.html">Mayoristas</a></li>
-        <li><a href="contacto.html">Nosotros y Contacto</a></li>
-      </ul>
-    </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú">
+        <span class="nav-toggle__bar"></span>
+      </button>
+
+      <nav class="site-nav" id="site-nav">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="catalogo.html">Catálogo</a></li>
+          <li><a href="grabados.html" aria-current="page">Grabados</a></li>
+          <li><a href="regalos-empresariales.html">Regalos Empresariales</a></li>
+          <li><a href="mayoristas.html">Mayoristas</a></li>
+          <li><a href="contacto.html">Nosotros y Contacto</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
   <main>
@@ -196,6 +204,7 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
   <script src="js/main.js"></script>
   <script src="js/grabados.js"></script>
 </body>
